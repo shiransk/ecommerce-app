@@ -12,3 +12,9 @@ ul {
   width: 200px;
   height: 200px;
 }
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20px;
+  background: url(retina_wood.png);
+}

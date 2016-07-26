@@ -1,4 +1,4 @@
-<h1>products list:</h1>
+<h1>Shiran's Store</h1>
 
 <table class="table table-hover">
   <tr>
@@ -6,14 +6,21 @@
     <th>Description</th>
     <th>Price</th>
     <th>Image</th>
+    <th>Delete</th>
+    <th>Edit</th>
   </tr>
+
   <%@products.each do |product| %>
   <tr>
-    <td> <%= product.name %></td>
+    <td> <%= link_to product.name , "/products/#{product.id}" %></td>
     <td> <%= product.description%></td>
     <td> <%= product.price %></td>
     <td> <img src="<%= product.image %>"> </td>
+    <td><%= link_to "Delete", "/products/#{product.id}", method: :delete %></td>
+    <td><%= link_to 'Edit' , "products/#{product.id}/edit"%></td>
+
   <% end %>
   </tr>
 
 </table>
+

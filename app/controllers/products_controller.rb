@@ -16,8 +16,11 @@ class ProductsController < ApplicationController
     price = params[:price]
     description = params[:description]
     image_url = params[:image]
-    product = Product.new(name: name, price: price, description: description, image: image_url)
+    product = Product.new(name: name, price: price, description: description, image: 
+    image_url)
     product.save
+    flash[:success] = "Product Created"
+    redirect_to "/products/#{product.id}"
   end
 
   def edit
@@ -31,13 +34,16 @@ class ProductsController < ApplicationController
     product.description= params[:description]
     product.image = params[:image]
     product.save
+    flash[:success] = "Product edited"
+    redirect_to "/products"
   end
 
   def destroy
     product = Product.find_by(id: params[:id])
     product.destroy
+    flash[:danger] = "Product destroed"
+    redirect_to "/products"
   end
-
   
 end
 
