@@ -7,14 +7,12 @@
     <th>Price</th>
     <th>Image</th>
   </tr>
-
   <%@products.each do |product| %>
   <tr>
     <td> <%= product.name %></td>
     <td> <%= product.description%></td>
     <td> <%= product.price %></td>
     <td> <img src="<%= product.image %>"> </td>
-
   <% end %>
   </tr>
 

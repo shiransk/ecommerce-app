@@ -5,10 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    #get specific product
-    id = params[:id]
-    @product = Product.find_by(id: id)
-    # @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id]) 
   end
 
   def new
@@ -19,17 +16,26 @@ class ProductsController < ApplicationController
     price = params[:price]
     description = params[:description]
     image_url = params[:image]
-
     product = Product.new(name: name, price: price, description: description, image: image_url)
     product.save
   end
 
   def edit
-    @id = params[:id]
-    # @product = Product.find_by(id: id)
+    @product = Product.find_by(id: params[:id])
   end
 
   def update
+    product = Product.find_by(id: params[:id])
+    product.name = params[:name]
+    product.price = params[:price]
+    product.description= params[:description]
+    product.image = params[:image]
+    product.save
+  end
+
+  def destroy
+    product = Product.find_by(id: params[:id])
+    product.destroy
   end
 
   

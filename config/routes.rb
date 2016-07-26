@@ -10,7 +10,9 @@ post '/products',   to: 'products#create'
 
 get '/products/:id/edit', to:'products#edit'
 
-patch 'products/:id', to:'products#update'
+patch '/products/:id', to:'products#update'
+
+delete 'products/:id/', to:'products#destroy'
 
 end
 
