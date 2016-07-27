@@ -44,6 +44,9 @@ class ProductsController < ApplicationController
     flash[:danger] = "Product destroed"
     redirect_to "/products"
   end
+
+  # def popular_products
+  # end
   
 end
 
