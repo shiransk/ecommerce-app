@@ -2,6 +2,9 @@
   <li><%= @product.name %></li>
   <li><%= @product.description %></li>
   <li><%= @product.price %>$</li>
+    <li>tax <%= @product.tax%></li>
+        <li>total-<%= @product.total%></li>
+
   <li><img class="show" src="<%= @product.image %>"></li>
   
   <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>

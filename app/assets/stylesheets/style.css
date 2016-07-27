@@ -3,6 +3,10 @@ img {
   height: 200px;
 }
 
+/*.black {
+  background-color:  rgba(42, 63, 142 , 0.5); 
+}*/
+
 ul {
   font-size: 20px;
   font-weight: bolder;

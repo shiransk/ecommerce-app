@@ -6,7 +6,10 @@
       <a href="/products/<%= product.id %>">
         <img src="<%= product.image %>" >
         <p><%= product.name %></p>
-        <p><%= product.price %>$</p>
+        <p><%= product.sale_message%></p>
+        <p>tax <%= product.tax%></p>
+        <p>total-<%= product.total%></p>
+
 <!--         <%= link_to "Delete", "/products/#{product.id}", method: :delete %>
         <%= link_to 'Edit' , "products/#{product.id}/edit"%> -->
       </a>
