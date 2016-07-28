@@ -15,5 +15,4 @@ class Product < ApplicationRecord
   def total
     price.to_i + tax
   end
-
 end

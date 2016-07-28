@@ -5,8 +5,14 @@
     <div class="col-md-4">
       <a href="/products/<%= product.id %>">
         <img src="<%= product.image %>" >
-        <p><%= product.name %></p>
+        <% if product.sale_message == "Discount Item!" %>
+        <p class="sale"><%= product.sale_message%></p>
+        <% else %>
         <p><%= product.sale_message%></p>
+        <% end %>
+        <p><%= product.name %></p>
+
+        <p>price <%= product.price%></p>
         <p>tax <%= product.tax%></p>
         <p>total-<%= product.total%></p>
 

@@ -17,6 +17,10 @@ ul {
   height: 200px;
 }
 
+.sale {
+  color: red;
+}
+
 body {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 20px;
