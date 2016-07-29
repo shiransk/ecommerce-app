@@ -37,11 +37,11 @@
         <li class="active"><a href="/products/new">Add new product <span class="sr-only">(current)</span></a></li>
         <li><a href="/products/popular_products">Popular products</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort Items <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><%= link_to "By Price(High to Low)", "/?sorted_reverse=asc" %></li>
+            <li><%= link_to "By Price(Low to High)","/?sorted=desc"  %></li>
+            <li><%= link_to "Discount Items" , "/?discount=Discount_Items" %></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>

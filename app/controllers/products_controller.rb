@@ -1,7 +1,15 @@
 class ProductsController < ApplicationController
 
   def index
-   @products = Product.all
+     if params[:discount] == "Discount_Items"
+       @products = Product.where("price < ?", 50)
+     elsif params[:sorted_reverse] == "asc"
+       @products = Product.order(price: :desc)
+     elsif params[:sorted] = "desc"
+       @products = Product.order(:price)
+     else
+       @products = Product.all
+     end
   end
 
   def show
@@ -16,7 +24,8 @@ class ProductsController < ApplicationController
     price = params[:price]
     description = params[:description]
     image_url = params[:image]
-    product = Product.new(name: name, price: price, description: description, image: 
+    availability = params[:availability]
+    product = Product.new(availability: availability,name: name, price: price, description: description, image: 
     image_url)
     product.save
     flash[:success] = "Product Created"
@@ -33,6 +42,7 @@ class ProductsController < ApplicationController
     product.price = params[:price]
     product.description= params[:description]
     product.image = params[:image]
+    product.availability = params[:availability]
     product.save
     flash[:success] = "Product edited"
     redirect_to "/products"

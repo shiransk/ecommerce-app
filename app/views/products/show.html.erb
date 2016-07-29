@@ -2,8 +2,9 @@
   <li><%= @product.name %></li>
   <li><%= @product.description %></li>
   <li><%= @product.price %>$</li>
-    <li>tax <%= @product.tax%></li>
-        <li>total-<%= @product.total%></li>
+  <li>tax <%=number_to_currency(@product.tax)%></li>
+  <li>total-<%= @product.total%></li>
+  <li><%= @product.availability%></li>
 
   <li><img class="show" src="<%= @product.image %>"></li>
   

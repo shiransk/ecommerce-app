@@ -2,7 +2,7 @@
 
   <div class="row">
     <%@products.each do |product|%>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <a href="/products/<%= product.id %>">
         <img src="<%= product.image %>" >
         <% if product.sale_message == "Discount Item!" %>
@@ -11,10 +11,10 @@
         <p><%= product.sale_message%></p>
         <% end %>
         <p><%= product.name %></p>
-
         <p>price <%= product.price%></p>
-        <p>tax <%= product.tax%></p>
+        <p>tax <%= number_to_currency(product.tax)%></p>
         <p>total-<%= product.total%></p>
+        <p>availability- <%= product.availability%></p>
 
 <!--         <%= link_to "Delete", "/products/#{product.id}", method: :delete %>
         <%= link_to 'Edit' , "products/#{product.id}/edit"%> -->
@@ -24,9 +24,6 @@
 
     <%end%>
   </div>
-
-
-
 
 <!-- <table class="table table-hover">
   <tr>

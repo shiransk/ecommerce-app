@@ -20,4 +20,3 @@ delete 'products/:id/', to:'products#destroy'
 
 
 end
-
