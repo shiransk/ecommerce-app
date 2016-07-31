@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
 
   def index
-     if params[:discount] == "Discount_Items"
+     if params[:search]
+      @products = []
+       @products << Product.find_by(name: params[:search])
+     elsif params[:discount] == "Discount_Items"
        @products = Product.where("price < ?", 50)
      elsif params[:sorted_reverse] == "asc"
        @products = Product.order(price: :desc)
@@ -13,7 +16,11 @@ class ProductsController < ApplicationController
   end
 
   def show
-   @product = Product.find_by(id: params[:id]) 
+    if sample = Product.all.sample
+      @product = sample
+    else
+      @product = Product.find_by(id: params[:id]) 
+    end
   end
 
   def new
