@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
       flash[:warning] = "Invailed Stupid"
       redirect_to '/login'
     end
-
   end
 
   def destroy
