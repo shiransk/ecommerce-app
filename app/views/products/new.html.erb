@@ -28,7 +28,11 @@
        <div class="form-group">
         <%= label_tag :availability , "availability" %>
         <%= text_field_tag :availability , '',class: "form-control"%>
-      </div> 
+      </div>
+
+      <!-- <div> -->
+         <%=collection_select  :supplier , :supplier_id , Supplier.all , :id , :name  %>
+      <!-- </div>  -->
 
       <div>
         <%= submit_tag "Create Product" %>

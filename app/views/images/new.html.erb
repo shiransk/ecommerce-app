@@ -1,0 +1,15 @@
+<h2>Add Image</h2>
+
+<%= form_tag '/images' , metohd: :post do  %>
+  <div>
+    <%label_tag :url %>
+    <%= text_field_tag :url %>
+  </div>
+
+  <div>
+    <%= collection_select  :product , :product_id , Product.all , :id , :name  %>
+  </div>
+
+    <%= submit_tag "Submit"  %>
+<% end %>
+

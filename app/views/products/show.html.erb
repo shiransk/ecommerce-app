@@ -2,13 +2,20 @@
   <li><%= @product.name %></li>
   <li><%= @product.description %></li>
   <li><%= @product.price %>$</li>
+  <li><%= @product.supplier.name%></li>
   <li>tax <%=number_to_currency(@product.tax)%></li>
   <li>total-<%= @product.total%></li>
   <li><%= @product.availability%></li>
 
-  <li><img class="show" src="<%= @product.image %>"></li>
+<!--   <li><img class="show" src=""></li> -->
   
   <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
   <%= link_to 'Edit' , "/products/#{@product.id}/edit"%>
+  <%= link_to "Add Image", '/images/new' %>
+  <div>
+    <% @product.images.each do |image| %>
+      <img src="<%= image.url %>">
+    <%end %>
+  </div>
 </ul>
 
