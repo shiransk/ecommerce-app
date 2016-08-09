@@ -4,6 +4,15 @@ img {
   margin: 5px; 
 }
 
+.order_info {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.tr-th-size {
+  font-size: 22px;
+}
+
 .quantity{
   margin: 20px;
 }

@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :autenticate_user
   
   def show
     @order = Order.find_by(id: params[:id])

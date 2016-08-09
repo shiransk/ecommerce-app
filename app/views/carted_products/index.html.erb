@@ -4,18 +4,18 @@
       <h1>Shoping Cart</h1>
      <table class="table info-background">
       <tr>   
-       <th>Product Name</th>
+       <th class="tr-th-size">Product Name</th>
+       <th>Image</th>
        <th>Product price</th>
        <th>Quintity</th>
-       <th>Image</th>
        <th>Delete Item</th>
      </tr>
      <% @order.carted_products.each do |carted_product| %>
-     <tr>
+     <tr class="order_info">
       <td><%= carted_product.product.name %></td>
+      <td><img src="<%= carted_product.product.images.first.url%>"></td>
       <td><%= carted_product.product.price %></td>
       <td><%= carted_product.quantity %></td>
-      <td><img src="<%= carted_product.product.images.first.url%>"></td>
       <td> <%= link_to "Remove Item", "/carted_products/#{carted_product.id}", method: :delete %></td>
     </tr>
     <% end %>

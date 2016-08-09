@@ -3,7 +3,7 @@
     <div class="col-md-4">
       <div class="order-show">
         <ul>
-          <% @product.categories.each do |category| %>
+            <% @product.categories.each do |category| %>
           <li>Categories:</li>
           <ul>
             <li><%= category.name %></li>
@@ -25,28 +25,27 @@
           <% end %>
         </div>
 
-          <div class="quantity">
-            <% if current_user && current_user.admin %>
-
-            <%= form_tag '/carted_products' , method: :post do %>
-
+        <div class="quantity">
+        <% if current_user  %>
+          <%= form_tag '/carted_products' , method: :post do %>
             <div>
              <%= label_tag :quantity %>
              <%= text_field_tag :quantity %>
-           </div>
+            </div>
 
-           <div>
+            <div>
              <%= hidden_field_tag :product_id , "#{@product.id}"  %>
-           </div>
+            </div>
 
-           <div>
+            <div>
              <%= submit_tag 'Add to Cart' %>
-           </div>
+            </div>
            <% end %>
-
-           <% end %>
-         </div>
-      </div>
+           <% else %>
+           <p>Login Requierd</p>
+        <% end %>
+       </div>
+     </div>
       
       <div class="col-md-4">
         <% @product.images.each do |image| %>

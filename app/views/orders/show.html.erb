@@ -4,12 +4,12 @@
     <h1>Invoice Info</h1>
      <table class="table info-background">
       <tr>   
-       <th>Product Name</th>
+       <th class="tr-th-size">Product Name</th>
        <th>Product price</th>
        <th>Quintity</th>
      </tr>
      <% @order.carted_products.each do |carted_product| %>
-     <tr>
+     <tr class="order_info">
       <td><%= carted_product.product.name %></td>
       <td><%= carted_product.product.price %></td>
       <td><%= carted_product.quantity %></td>

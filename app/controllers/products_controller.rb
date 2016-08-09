@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
-  before_action :check_if_admin, except: [:index, :show, :search]
-
+  before_action :autenticate_admin, except: [:index, :show, :search]
+ 
   def index
      if params[:discount] == "Discount_Items"
        @products = Product.where("price < ?", 50)

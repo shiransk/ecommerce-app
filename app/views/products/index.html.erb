@@ -1,6 +1,8 @@
   <h1>Shiran's Pet Store</h1>
-
-  <div class="row">
+    <% if current_user && current_user.admin %>
+        <a href="/products/new">Add new product <span class="sr-only">(current)</span></a>
+    <% end %>
+          <div class="row">
     <%@products.each do |product|%>
     <div class="col-md-3">
       <a href="/products/<%= product.id %>">
