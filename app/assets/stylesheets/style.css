@@ -1,12 +1,35 @@
 img {
   width: 240px;
   height: 200px;
+  margin: 5px; 
+}
+
+.quantity{
+  margin: 20px;
+}
+
+.info-background {
+  background: #FFFFFF;
+  border-radius: 10px;
+  list-style-type: none;
 }
 
 /*.black {
   background-color:  rgba(42, 63, 142 , 0.5); 
 }*/
 
+.order-show {
+  background-color: white;
+  font-size: 18px;
+  font-family:  "Arial Black", Gadget, sans-serif;
+  padding: 0px 0px 10px 50px;
+  border-radius: 25px; 
+}
+
+.buy_more {
+  font-family:  "Arial Black", Gadget, sans-serif;
+  font-size: 25px;
+}
 ul {
   font-size: 20px;
   font-weight: bolder;

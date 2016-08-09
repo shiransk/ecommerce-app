@@ -1,21 +1,65 @@
-<ul>
-  <li><%= @product.name %></li>
-  <li><%= @product.description %></li>
-  <li><%= @product.price %>$</li>
-  <li><%= @product.supplier.name%></li>
-  <li>tax <%=number_to_currency(@product.tax)%></li>
-  <li>total-<%= @product.total%></li>
-  <li><%= @product.availability%></li>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <div class="order-show">
+        <ul>
+          <% @product.categories.each do |category| %>
+          <li>Categories:</li>
+          <ul>
+            <li><%= category.name %></li>
+            <% end %>
+          </ul>
+          <li>Name: <%= @product.name %></li>
+          <li>Description: <%= @product.description %></li>
+          <li>Supplier- <%= @product.supplier.name%></li>
+          <li>Price: <%= @product.price %>$</li>
+          <li>Tax: <%=number_to_currency(@product.tax)%></li>
+          <li>Total:<%= @product.total%></li>
+          <li>Status: <%= @product.availability%></li>
+          <% if current_user && current_user.admin %>
 
-<!--   <li><img class="show" src=""></li> -->
-  
-  <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
-  <%= link_to 'Edit' , "/products/#{@product.id}/edit"%>
-  <%= link_to "Add Image", '/images/new' %>
-  <div>
-    <% @product.images.each do |image| %>
-      <img src="<%= image.url %>">
-    <%end %>
-  </div>
-</ul>
+          <!--   <li><img class="show" src=""></li> -->
+          <li><%= link_to "Delete", "/products/#{@product.id}", method: :delete %></li>
+          <li><%= link_to 'Edit' , "/products/#{@product.id}/edit"%></li>
+          <li><%= link_to "Add Image", '/images/new' %></li>
+          <% end %>
+        </div>
+
+          <div class="quantity">
+            <% if current_user && current_user.admin %>
+
+            <%= form_tag '/carted_products' , method: :post do %>
+
+            <div>
+             <%= label_tag :quantity %>
+             <%= text_field_tag :quantity %>
+           </div>
+
+           <div>
+             <%= hidden_field_tag :product_id , "#{@product.id}"  %>
+           </div>
+
+           <div>
+             <%= submit_tag 'Add to Cart' %>
+           </div>
+           <% end %>
+
+           <% end %>
+         </div>
+      </div>
+      
+      <div class="col-md-4">
+        <% @product.images.each do |image| %>
+        <img src="<%= image.url %>">
+        <% if current_user && current_user.admin %>
+        <%= link_to 'Delete', "/images/#{image.id}", method: :delete %>
+        <% end %>
+        <%end %>
+     </div>
+
+      <div class="colm-md-1">
+
+    </div>
+
+   </ul>
 

@@ -7,4 +7,14 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:user_id]) if session[:user_id]
   end 
 
+  def check_if_admin
+    if current_user && current_user.admin 
+      #do nothing
+    else
+      flash[:danger] = "Go away stupid!!!!!"
+      redirect_to '/'
+
+    end
+  end
+
 end

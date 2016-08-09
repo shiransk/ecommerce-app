@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def new
   end
 
@@ -8,6 +9,10 @@ class UsersController < ApplicationController
     if user.save
       flash[:success] = "User Created"
       redirect_to '/' 
+    else
+      flash[:danger] = "Regestrtion failed!!!"
+      redirect_to '/singup'
     end
   end
+
 end

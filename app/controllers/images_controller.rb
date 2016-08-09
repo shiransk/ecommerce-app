@@ -11,4 +11,11 @@ class ImagesController < ApplicationController
     image.save
     redirect_to "/products/#{image.product.id}"
   end
+
+  def destroy
+    image = Image.find_by(id: params[:id])
+    image.destroy
+    flash[:danger] = "Photo deleted!"
+    redirect_to "/products/#{image.product.id}"
+  end
 end

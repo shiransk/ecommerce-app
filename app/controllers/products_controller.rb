@@ -1,10 +1,14 @@
 class ProductsController < ApplicationController
 
+  before_action :check_if_admin, except: [:index, :show, :search]
+
   def index
      if params[:discount] == "Discount_Items"
        @products = Product.where("price < ?", 50)
      elsif params[:sorted]
        @products = Product.order(price: params[:sorted])
+     elsif params[:category_id]
+       @products = Category.find_by(id: params[:category_id]).products
      else
        @image = Image.all
        @products = Product.all
@@ -23,37 +27,43 @@ class ProductsController < ApplicationController
   end
 
   def create
-    name = params[:name]
-    price = params[:price]
-    description = params[:description]
-    availability = params[:availability]
-    supplier_id = params[:supplier_id]
-    product = Product.new(availability: availability,name: name, price: price, description: description, supplier_id: supplier_id)
-    product.save
-    flash[:success] = "Product Created"
-    redirect_to "/products/#{product.id}"
+      name = params[:name]
+      price = params[:price]
+      description = params[:description]
+      availability = params[:availability]
+      supplier_id = params[:supplier_id]
+      product = Product.new( availability: availability,name: name, price: price, description: description, supplier_id: params[:supplier][:supplier_id])
+      # binding.pry
+      if product.save
+        flash[:success] = "Product Created"
+        redirect_to "/products/#{product.id}"
+      else
+        flash[:danger] = "Product not Created"
+        redirect_to '/'
+      end
+
   end
 
   def edit
-    @product = Product.find_by(id: params[:id])
+      @product = Product.find_by(id: params[:id])
   end
 
   def update
-    product = Product.find_by(id: params[:id])
-    product.name = params[:name]
-    product.price = params[:price]
-    product.description= params[:description]
-    product.availability = params[:availability]
-    product.save
-    flash[:success] = "Product edited"
-    redirect_to "/products"
+      product = Product.find_by(id: params[:id])
+      product.name = params[:name]
+      product.price = params[:price]
+      product.description= params[:description]
+      product.availability = params[:availability]
+      product.save
+      flash[:success] = "Product edited"
+      redirect_to "/products/#{product.id}"
   end
 
   def destroy
-    product = Product.find_by(id: params[:id])
-    product.destroy
-    flash[:danger] = "Product destroed"
-    redirect_to "/products"
+      product = Product.find_by(id: params[:id])
+      product.destroy
+      flash[:danger] = "Product destroed"
+      redirect_to "/products"
   end
 
   def search
