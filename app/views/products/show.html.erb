@@ -25,14 +25,6 @@
           <% end %>
         </div>
 
-         <% if @carted_products && @carted_products.errors.any? %>
-           <ul>
-             <% @carted_products.errors.full_message.each do |message| %>
-               <li>message</li>
-             <% end %>
-           </ul>
-         <% end %>
-
         <div class="quantity">
         <% if current_user  %>
           <%= form_tag '/carted_products' , method: :post do %>

@@ -21,8 +21,10 @@ class CartedProductsController < ApplicationController
     if @carted_products.save
       redirect_to '/carted_products'
     else
-      flash[:danger] = "Eror"
-      # render "/products/#{@carted_product.products.last.id}"
+      flash[:danger] = "No No No" 
+      redirect_to '/'
+      # render template: "products/show"
+      # @product = Product.find_by(id: params[:product_id])
     end
 
   end
