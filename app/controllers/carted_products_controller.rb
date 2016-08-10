@@ -17,11 +17,12 @@ class CartedProductsController < ApplicationController
       order.save
     end
 
-    carted_products = CartedProduct.new(product_id: params[:product_id], quantity: params[:quantity], order_id: order.id)
-    if carted_products.save
+    @carted_products = CartedProduct.new(product_id: params[:product_id], quantity: params[:quantity], order_id: order.id)
+    if @carted_products.save
       redirect_to '/carted_products'
     else
       flash[:danger] = "Eror"
+      # render "/products/#{@carted_product.products.last.id}"
     end
 
   end

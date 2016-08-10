@@ -2,7 +2,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-4">
       <div class="order-show">
-        <ul>
+          <ul>
             <% @product.categories.each do |category| %>
           <li>Categories:</li>
           <ul>
@@ -24,6 +24,14 @@
           <li><%= link_to "Add Image", '/images/new' %></li>
           <% end %>
         </div>
+
+         <% if @carted_products && @carted_products.errors.any? %>
+           <ul>
+             <% @carted_products.errors.full_message.each do |message| %>
+               <li>message</li>
+             <% end %>
+           </ul>
+         <% end %>
 
         <div class="quantity">
         <% if current_user  %>

@@ -4,6 +4,16 @@
   <div class="row-md-6">
     <h1>Edit Product</h1>
 
+    <% if @product && @product.errors.any? %>
+
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+        <li class="error"> <%= message %></li>
+        <% end %>
+      </ul>
+
+    <% end %>
+
     <%= form_tag "/products/#{@product.id}", method: :patch do %>
 
       <div class="form-group">

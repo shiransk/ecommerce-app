@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new #go over concept
   end
 
   def create
@@ -32,14 +33,14 @@ class ProductsController < ApplicationController
       description = params[:description]
       availability = params[:availability]
       supplier_id = params[:supplier_id]
-      product = Product.new( availability: availability,name: name, price: price, description: description, supplier_id: params[:supplier][:supplier_id])
+      @product = Product.new( availability: availability,name: name, price: price, description: description, supplier_id: params[:supplier][:supplier_id])
       # binding.pry
-      if product.save
+      if @product.save
         flash[:success] = "Product Created"
         redirect_to "/products/#{product.id}"
       else
         flash[:danger] = "Product not Created"
-        redirect_to '/'
+        render :new
       end
 
   end
@@ -49,14 +50,17 @@ class ProductsController < ApplicationController
   end
 
   def update
-      product = Product.find_by(id: params[:id])
-      product.name = params[:name]
-      product.price = params[:price]
-      product.description= params[:description]
-      product.availability = params[:availability]
-      product.save
-      flash[:success] = "Product edited"
-      redirect_to "/products/#{product.id}"
+      @product = Product.find_by(id: params[:id])
+      @product.name = params[:name]
+      @product.price = params[:price]
+      @product.description= params[:description]
+      @product.availability = params[:availability]
+      if @product.save
+        flash[:success] = "Product edited"
+        redirect_to "/products/#{@product.id}"
+      else flash[:danger] = "Product Not Updated!!!"
+        render :edit
+      end     
   end
 
   def destroy
