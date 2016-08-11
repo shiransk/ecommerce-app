@@ -5,22 +5,24 @@
      <table class="table info-background">
       <tr>   
        <th class="tr-th-size">Product Name</th>
+       <th>Image</th>
        <th>Product price</th>
        <th>Quintity</th>
      </tr>
      <% @order.carted_products.each do |carted_product| %>
      <tr class="order_info">
       <td><%= carted_product.product.name %></td>
-      <td><%= carted_product.product.price %></td>
+      <td><img class="img-responsive" src="<%= carted_product.product.images.first.url if carted_product.product.images.any? %>"></td>
+      <td><%= number_to_currency(carted_product.product.price) %></td>
       <td><%= carted_product.quantity %></td>
     </tr>
     <% end %>
   </table>
 
   <ul>
-    <li>Subtotal - <%= @order.subtotal  %></li>
-    <li>Tax - <%= @order.tax %> </li>
-    <li> Total - <%= @order.total  %></li>
+    <li>Subtotal - <%= number_to_currency(@order.subtotal) %></li>
+    <li>Tax - <%= number_to_currency(@order.tax) %> </li>
+    <li> Total - <%= number_to_currency(@order.total)  %></li>
   </ul>
 
   </div>

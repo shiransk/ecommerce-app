@@ -19,6 +19,7 @@ class CartedProductsController < ApplicationController
 
     @carted_products = CartedProduct.new(product_id: params[:product_id], quantity: params[:quantity], order_id: order.id)
     if @carted_products.save
+      session[:cart_count] = nil
       redirect_to '/carted_products'
     else
       flash[:danger] = "No No No" 
@@ -44,12 +45,15 @@ class CartedProductsController < ApplicationController
     total = total_tax + total_subtotal
     order.assign_attributes(completed: true, subtotal: total_subtotal, total: total, tax: total_tax, user_id: current_user.id)
     order.save
+    session[:cart_count] = nil
+
     redirect_to "/orders/#{order.id}"
 
   end
 
   def destroy
     carted_product = CartedProduct.find_by(id: params[:id]).delete
+    session[:cart_count] = nil
     flash[:warning] = "#{carted_product.product.name} Removed from Cart!!!"
     redirect_to '/carted_products'
   end
